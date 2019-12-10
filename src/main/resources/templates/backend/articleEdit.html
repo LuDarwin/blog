@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>小新博客-文章编辑</title>
+    <link rel="stylesheet" href="/css/editormd.css"/>
+</head>
+<body>
+<div class="content" layout:fragment="content">
+    <div class="row">
+        <div class="form-group  col-md-9">
+            <input type="text" class="form-control" id="articleTitle" placeholder="这里输入文章标题"
+                   th:attr="value=${blogArticle?.articleTitle}">
+        </div>
+        <div class="form-group  col-md-3">
+            <select class="form-control" id="sortId">
+                <option th:if="${blogArticle?.sortId}==${blogSort?.sortId}" selected="true"
+                        th:each="blogSort:${blogSortList}" th:text="${blogSort.sortName}"
+                        th:attr="value=${blogSort.sortId}"></option>
+                <option th:else th:each="blogSort:${blogSortList}" th:text="${blogSort.sortName}"
+                        th:attr="value=${blogSort.sortId}"></option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group  col-md-12">
+            <input type="hidden" id="articleId" th:attr="value=${blogArticle?.articleId}">
+            <input type="text" class="form-control" id="articleSummary" placeholder="这里输入文章概要"
+                   th:attr="value=${blogArticle?.articleSummary}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="editormd" id="blog-editormd">
+            <textarea class="editormd-markdown-textarea" name="textContent" th:text="${blogArticle?.articleInfo}">
+            </textarea>
+            <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+            <textarea class="editormd-html-textarea" name="text" id="articleInfo"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group  col-md-11">&nbsp;</div>
+        <div class="form-group col-md-1">
+            <button type="submit" class="btn btn-primary" id="submit">提交</button>
+        </div>
+    </div>
+</div>
+<th:block layout:fragment="bodyAssets">
+    <script src="/js/editormd.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function () {
+            editormd("blog-editormd", {
+                htmlDecode: "style,script,iframe",
+                width: "98%",
+                height: 600,
+                syncScrolling: "single",
+                path: "/lib/",
+                fontSize: "16px",
+                imageUpload: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL: "/uploadfile",
+                saveHTMLToTextarea: true
+            });
+
+            $("#submit").click(function () {
+                $.ajax({
+                    url: "/manage/articleSave",
+                    data: {
+                        "articleTitle": $("#articleTitle").val(),
+                        "articleInfo": $("#articleInfo").val(),
+                        "sortId": $("#sortId").val(),
+                        "articleSummary": $("#articleSummary").val(),
+                        "articleId":$("#articleId").val()
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        $.notify({
+                            icon: 'ti-gift',
+                            message: "提交成功"
+
+                        }, {
+                            type: 'success',
+                            timer: 10
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</th:block>
+</body>
+</html>

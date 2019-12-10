@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="luzurong.cn.blog.dao.SysUserMapper">
+    <resultMap id="BaseResultMap" type="luzurong.cn.blog.entity.SysUser">
+        <id column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="created" property="created" jdbcType="TIMESTAMP"/>
+        <result column="account" property="account" jdbcType="VARCHAR"/>
+        <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="creater" property="creater" jdbcType="VARCHAR"/>
+        <result column="lastmod" property="lastmod" jdbcType="TIMESTAMP"/>
+        <result column="modifyer" property="modifyer" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+      user_id, user_name, created, account, user_pwd, phone, status, creater, lastmod,modifyer
+    </sql>
+
+</mapper>

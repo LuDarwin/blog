@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="luzurong.cn.blog.dao.SysUserRoleMapper">
+    <resultMap id="BaseResultMap" type="luzurong.cn.blog.entity.SysUserRole">
+        <id column="UR_ID" property="urId" jdbcType="VARCHAR" />
+        <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+        <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+        <result column="STATUS" property="status" jdbcType="CHAR" />
+        <result column="CREATED" property="created" jdbcType="TIMESTAMP" />
+        <result column="LASTMOD" property="lastmod" jdbcType="TIMESTAMP" />
+        <result column="CREATER" property="creater" jdbcType="VARCHAR" />
+        <result column="MODIFYER" property="modifyer" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        UR_ID, ROLE_ID, USER_ID, STATUS, CREATED, LASTMOD, CREATER, MODIFYER
+    </sql>
+
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="luzurong.cn.blog.dao.BlogArticleMapper">
+    <resultMap id="BaseResultMap" type="luzurong.cn.blog.entity.BlogArticle">
+        <id column="article_id" property="articleId" jdbcType="VARCHAR"/>
+        <result column="article_title" property="articleTitle" jdbcType="VARCHAR"/>
+        <result column="creater" property="creater" jdbcType="VARCHAR"/>
+        <result column="sort_id" property="sortId" jdbcType="VARCHAR"/>
+        <result column="article_views" property="articleViews" jdbcType="INTEGER"/>
+        <result column="created" property="created" jdbcType="TIMESTAMP"/>
+        <result column="modifyer" property="modifyer" jdbcType="VARCHAR"/>
+        <result column="lastmod" property="lastmod" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="CHAR"/>
+        <result column="article_summary" property="articleSummary" jdbcType="VARCHAR"/>
+    </resultMap>
+
+</mapper>
